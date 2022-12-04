@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable
+class Player extends Authenticatable
 {
   use HasApiTokens, HasFactory, Notifiable;
+
+  protected $table = 'players';
 
   /**
    * The attributes that are mass assignable.
@@ -50,19 +52,7 @@ class User extends Authenticatable
 
   public static function savePlayer ($r)
   {
-    /* DEBUG */
-    /* DEBUG */
-    /* DEBUG */
-    /*
-     * 1.- Save the user.
-     * 2.- Get the last player, or search for player name.
-     * 3.- Get the player id.
-     * 4.- Save the player id as idrolpla and player role as role.
-     */
-    /* DEBUG */
-    /* DEBUG */
-    /* DEBUG */
-    $player = new User ();
+    $player = new Player ();
 
     $player->name        = $r->name;
     $player->email       = $r->email;
@@ -72,7 +62,7 @@ class User extends Authenticatable
 
     $role = new Role ();
 
-    $player = User::where ('email', $r->email)->get ();
+    $player = Player::where ('email', $r->email)->get ();
 
     foreach ($player as $p)
     {

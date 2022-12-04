@@ -7,17 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\TokenRepository;
 use Validator;
-use App\Models\User;
-
-/* DEBUG */
-/* DEBUG */
-/* DEBUG */
-/*
- * 1.- Check the return values for the database operations.
- */
-/* DEBUG */
-/* DEBUG */
-/* DEBUG */
+use App\Models\Player;
 
 class authController extends Controller
 {
@@ -42,7 +32,7 @@ class authController extends Controller
       ], 400);
     }
 
-    $status = User::savePlayer ($request);
+    $status = Player::savePlayer ($request);
 
     return response ()->json ([ 'message' => 'Player successfully created.' ], 201);
   }
