@@ -39,19 +39,41 @@ class authController extends Controller
 
   public function login (Request $request)
   {
-    $request->validate ([
-      'email'    => 'required|string|email',
-      'password' => 'required|string',
-    ]);
+    $post = $request->only (['email', 'password']);
 
-    $credentials = request (['email', 'password']);
+    $rules = [
+      'email'    => 'required|email',
+      'password' => 'required|min:8',
+    ];
 
-    if (! Auth::attempt ($credentials))
-      return response ()->json ([ 'message' => 'Unauthorized !!!' ], 401);
+    $valid = Validator::make ($post, $rules);
 
-    $token = auth ()->user ()->createToken ('API Token')->accessToken;
+    if ($valid->fails ())
+    {
+      return response ()->json ([
+        'success' => false,
+        'message' => 'Data not validated.',
+        'errors' => $valid->errors()
+      ], 400);
+    }
 
-    return response (['user' => auth ()->user (), 'token' => $token]);
+    if (auth ()->attempt ($post))
+    {
+      $token = auth ()->user ()->createToken ('passport_token')->accessToken;
+
+      return response ()->json ([
+        'success' => true,
+        'message' => 'Player logged in succesfully, use token to authenticate.',
+        'token' => $token
+      ], 200);
+    }
+    else
+    {
+      return response()->json([
+        'success' => false,
+        'message' => 'Player authentication failed.'
+      ], 401);
+    }
   }
 
   public function logout ()

@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\playerController;
 
-Route::post ('/register/', [authController::class, 'register']);
-Route::post ('/login/',    [authController::class, 'login']);
+Route::post ('/players/', [authController::class, 'register']);
+Route::post ('/login/',   [authController::class, 'login']);
 
 Route::middleware ('auth:api')->group (function ()
 {
   Route::post ('/logout/', [authController::class, 'logout']);
-  Route::post ('/player/', [playerController::class, 'showPlayer']);
+//  Route::post ('/player/', [playerController::class, 'showPlayer']);
 });
 
