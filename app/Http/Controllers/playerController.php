@@ -3,13 +3,29 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Player;
 
 class playerController extends Controller
 {
-  public function showPlayer (Request $request)
+  public function modifyPlayer (Request $request, $id)
   {
-    return response ()->json (request ()->user ());
+     $authPlayer = request ()->user ();
+
+    if ($authPlayer->id == $id)
+    {
+      Player::modify ($request ['name'], $id);
+      return response ()->json ([
+        'success' => true,
+        'message' => 'Player name modified.'
+      ], 200);
+    }
+    else
+    {
+      return response ()->json ([
+        'success' => false,
+        'message' => 'Unauthenticated, player name NOT modified.'
+      ], 401);
+    }
   }
 }
 

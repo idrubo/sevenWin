@@ -32,7 +32,7 @@ class authController extends Controller
       ], 400);
     }
 
-    $status = Player::savePlayer ($request);
+    $status = Player::create ($request);
 
     return response ()->json ([ 'message' => 'Player successfully created.' ], 201);
   }

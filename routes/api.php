@@ -23,6 +23,7 @@ Route::post ('/login/',   [authController::class, 'login']);
 Route::middleware ('auth:api')->group (function ()
 {
   Route::post ('/logout/', [authController::class, 'logout']);
-//  Route::post ('/player/', [playerController::class, 'showPlayer']);
+
+  Route::put ('/players/{id}/', [playerController::class, 'modifyPlayer']);
 });
 

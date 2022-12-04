@@ -50,7 +50,7 @@ class Player extends Authenticatable
     return $this->hasOne (Role::class, 'idrolpla', 'id');
   }
 
-  public static function savePlayer ($r)
+  public static function create ($r)
   {
     $player = new Player ();
 
@@ -73,6 +73,17 @@ class Player extends Authenticatable
     $role->save ();
 
     return true;
+  }
+
+  public static function modify ($nm, $id)
+  {
+    $player = Player::where ('id', $id)->get ();
+
+    foreach ($player as $p)
+    {
+      $p->name = $nm;
+      $p->save ();
+    }
   }
 }
 
