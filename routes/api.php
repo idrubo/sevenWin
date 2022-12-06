@@ -12,8 +12,21 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+use App\Http\Controllers\authC;
+use App\Http\Controllers\playerC;
+use App\Http\Controllers\throwC;
+
+Route::post ('/players/', [authC::class, 'register']);
+Route::post ('/login/',   [authC::class, 'login']);
+
+Route::middleware ('auth:api')->group (function ()
+{
+  Route::post ('/logout/', [authC::class, 'logout']);
+
+  Route::put ('/players/{id}/', [playerC::class, 'modifyPlayer']);
+
+  Route::post ('/players/{id}/games/', [throwC::class, 'throw']);
 });
+
