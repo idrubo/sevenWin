@@ -71,8 +71,6 @@ class Player extends Authenticatable
     }
 
     $role->save ();
-
-    return true;
   }
 
   public static function modify ($nm, $id)

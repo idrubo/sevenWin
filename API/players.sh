@@ -9,7 +9,7 @@
 echo "To create a player:"
 curl -X POST -F 'name=name1' -F 'email=name1@s.com' -F 'password=12345678' -F 'role=player' http://localhost:8000/api/players
 curl -X POST -F 'name=name2' -F 'email=name2@s.com' -F 'password=12345678' -F 'role=player' http://localhost:8000/api/players
-curl -X POST -F 'name=name3' -F 'email=name3@s.com' -F 'password=12345678' -F 'role=guest'  http://localhost:8000/api/players
+curl -X POST -F 'name=' -F 'email=name3@s.com' -F 'password=12345678' -F 'role=guest'  http://localhost:8000/api/players
 echo
 
 exit 0

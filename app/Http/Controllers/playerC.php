@@ -5,11 +5,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Player;
 
-class playerController extends Controller
+class playerC extends Controller
 {
   public function modifyPlayer (Request $request, $id)
   {
-     $authPlayer = request ()->user ();
+    $authPlayer = request ()->user ();
 
     if ($authPlayer->id == $id)
     {

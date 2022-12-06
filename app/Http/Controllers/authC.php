@@ -9,10 +9,12 @@ use Laravel\Passport\TokenRepository;
 use Validator;
 use App\Models\Player;
 
-class authController extends Controller
+class authC extends Controller
 {
   public function register (Request $request)
   {
+    if (empty ($request ['name'])) $request ['name'] = 'anonymous';
+
     $post = $request->only (['name', 'email', 'password', 'role']);
 
     $rules = [
@@ -32,7 +34,7 @@ class authController extends Controller
       ], 400);
     }
 
-    $status = Player::create ($request);
+    Player::create ($request);
 
     return response ()->json ([ 'message' => 'Player successfully created.' ], 201);
   }

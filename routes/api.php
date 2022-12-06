@@ -14,16 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-use App\Http\Controllers\authController;
-use App\Http\Controllers\playerController;
+use App\Http\Controllers\authC;
+use App\Http\Controllers\playerC;
+use App\Http\Controllers\throwC;
 
-Route::post ('/players/', [authController::class, 'register']);
-Route::post ('/login/',   [authController::class, 'login']);
+Route::post ('/players/', [authC::class, 'register']);
+Route::post ('/login/',   [authC::class, 'login']);
 
 Route::middleware ('auth:api')->group (function ()
 {
-  Route::post ('/logout/', [authController::class, 'logout']);
+  Route::post ('/logout/', [authC::class, 'logout']);
 
-  Route::put ('/players/{id}/', [playerController::class, 'modifyPlayer']);
+  Route::put ('/players/{id}/', [playerC::class, 'modifyPlayer']);
+
+  Route::post ('/players/{id}/games/', [throwC::class, 'throw']);
 });
 
