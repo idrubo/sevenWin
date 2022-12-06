@@ -26,13 +26,41 @@ class throwC extends Controller
 
       return response ()->json ([
         'success' => false,
-        'message' => 'Only players can do so.'
+        'message' => 'Unauthorized, only players can do so.'
       ], 403);
     }
 
     return response ()->json ([
       'success' => false,
       'message' => 'Unauthenticated, NOT allowing the throw.'
+    ], 401);
+  }
+
+  public function deleteThrow ($id)
+  {
+    $authPlayer = auth ()->user ();
+
+    if ($authPlayer->id == $id)
+    {
+      if (ThrowDice::checkRole ($id))
+      {
+        ThrowDice::deleteThrows ($id);
+
+        return response ()->json ([
+          'success' => true,
+          'message' => 'Deleting all throws.'
+        ], 200);
+      }
+
+      return response ()->json ([
+        'success' => false,
+        'message' => 'Unauthorized, only players can do so.'
+      ], 403);
+    }
+
+    return response ()->json ([
+      'success' => false,
+      'message' => 'Unauthenticated, NOT allowing the delete.'
     ], 401);
   }
 }

@@ -27,6 +27,7 @@ Route::middleware ('auth:api')->group (function ()
 
   Route::put ('/players/{id}/', [playerC::class, 'modifyPlayer']);
 
-  Route::post ('/players/{id}/games/', [throwC::class, 'throwDice']);
+  Route::post   ('/players/{id}/games/', [throwC::class, 'throwDice']);
+  Route::delete ('/players/{id}/games/', [throwC::class, 'deleteThrow']);
 });
 

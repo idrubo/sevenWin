@@ -22,6 +22,11 @@ class ThrowDice extends Model
     $throw->save ();
   }
 
+  public static function deleteThrows ($id)
+  {
+    ThrowDice::where('idthrpla', $id)->delete();
+  }
+
   public static function checkRole ($id)
   {
     $player = Player::where ('id', $id)->get ();
