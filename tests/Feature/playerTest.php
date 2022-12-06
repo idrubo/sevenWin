@@ -39,6 +39,28 @@ class playerTest extends TestCase
          ]);
   }
 
+  public function testModifyRequiresName ()
+  {
+    $post = [
+      'email'    => 'modify1@s.com',
+      'password' => '12345678',
+    ];
+
+    $this->json ('post', '/api/login/', $post);
+
+    $token = auth ()->user ()->createToken ('passport_token')->accessToken;
+    $headers = ['Authorization' => "Bearer $token"];
+
+    $id = auth ()->user ()->id;
+
+    $this->json ('put', "/api/players/$id/", [], $headers)
+         ->assertStatus (400)
+         ->assertJson ([
+           'success' => false,
+           'message' => 'Data not validated.',
+         ]);
+  }
+
   public function testModifyFail ()
   {
     $post = [

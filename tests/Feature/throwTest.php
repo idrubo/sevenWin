@@ -9,7 +9,7 @@ use App\Models\ThrowDice;
 
 class throwTest extends TestCase
 {
-  public function testModifySuccess ()
+  public function testThrowSuccess ()
   {
     $post = [
       'name'     => 'throw1',

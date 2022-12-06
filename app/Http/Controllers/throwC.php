@@ -8,7 +8,7 @@ use App\Models\ThrowDice;
 
 class throwC extends Controller
 {
-  public function throwDice (Request $request, $id)
+  public function throwDice ($id)
   {
     $authPlayer = auth ()->user ();
 
