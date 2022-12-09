@@ -36,7 +36,7 @@ class throwC extends Controller
     ], 401);
   }
 
-  public function deleteThrow ($id)
+  public function deleteThrows ($id)
   {
     $authPlayer = auth ()->user ();
 
@@ -44,7 +44,7 @@ class throwC extends Controller
     {
       if (ThrowDice::checkRole ($id))
       {
-        ThrowDice::deleteThrows ($id);
+        ThrowDice::delThrow ($id);
 
         return response ()->json ([
           'success' => true,
@@ -61,6 +61,35 @@ class throwC extends Controller
     return response ()->json ([
       'success' => false,
       'message' => 'Unauthenticated, NOT allowing the delete.'
+    ], 401);
+  }
+
+  public function listThrows ($id)
+  {
+    $authPlayer = auth ()->user ();
+
+    if ($authPlayer->id == $id)
+    {
+      if (ThrowDice::checkRole ($id))
+      {
+        $list = ThrowDice::listThrows ($id);
+
+        return response ()->json ([
+          'success' => true,
+          'message' => 'Listing all throws.',
+          'list'    => $list
+        ], 200);
+      }
+
+      return response ()->json ([
+        'success' => false,
+        'message' => 'Unauthorized, only players can do so.'
+      ], 403);
+    }
+
+    return response ()->json ([
+      'success' => false,
+      'message' => 'Unauthenticated, NOT allowing the listing.'
     ], 401);
   }
 }

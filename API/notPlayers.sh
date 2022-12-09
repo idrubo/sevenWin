@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# A player tries to register but some data is wrong (role).
+
 # To test the example, check if:
 # 1.- mysql 'pass' database is created.
 # 2.- Migrations are run.
