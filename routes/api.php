@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authC;
 use App\Http\Controllers\playerC;
 use App\Http\Controllers\throwC;
+use App\Http\Controllers\listC;
 
 Route::post ('/players/', [authC::class, 'register']);
 Route::post ('/login/',   [authC::class, 'login']);
@@ -30,5 +31,8 @@ Route::middleware ('auth:api')->group (function ()
   Route::post   ('/players/{id}/games/', [throwC::class, 'throwDice']);
   Route::delete ('/players/{id}/games/', [throwC::class, 'deleteThrows']);
   Route::get    ('/players/{id}/games/', [throwC::class, 'listThrows']);
+
+  Route::get ('/players/', [listC::class, 'listPlayers']);
+
 });
 

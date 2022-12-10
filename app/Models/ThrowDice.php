@@ -41,10 +41,43 @@ class ThrowDice extends Model
 
     foreach ($throws as $t)
     {
-      $cols = array ('name' => $t->players->name, 'result' => $t->result, 'win' => $t->win);
-      array_push ($list, (object) $cols);
+      $row = array ('name' => $t->players->name, 'result' => $t->result, 'win' => $t->win);
+      array_push ($list, (object) $row);
     }
 
+    return $list;
+  }
+
+  public static function lstPlayers ()
+  {
+    $list = array ();
+
+    $players = Player::all ();
+
+    foreach ($players as $pl)
+    {
+      $wins = 0;
+      if ($pl->roles->role == 'player')
+      {
+        $throws = ThrowDice::where ('idthrpla', $pl->id)->get ();
+        $total = $throws->count ();
+
+        if ($total)
+        {
+          foreach ($throws as $th) if ($th->win == 'wins') $wins++;
+
+          $average = $wins / $total * 100;
+
+          $row = array (
+            'name'    => $th->players->name,
+            'total'   => $total,
+            'wins'    => $wins,
+            'average' => $average);
+
+          array_push ($list, (object) $row);
+        }
+      }
+    }
     return $list;
   }
 
