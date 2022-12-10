@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# A player or a guest logs out.
+
 # Check "login.sh" for instructions first.
 
 if [ ${#} != '1' ] ; then

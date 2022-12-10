@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# A player or a guest logs in.
+
 # To test the example, check if:
 # 1.- mysql 'pass' database is created.
 # 2.- Migrations are run.

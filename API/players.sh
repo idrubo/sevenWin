@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# To register a few players or guests.
+
 # To test the example, check if:
 # 1.- mysql 'pass' database is created.
 # 2.- Migrations are run.
