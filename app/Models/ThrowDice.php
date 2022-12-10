@@ -95,6 +95,40 @@ class ThrowDice extends Model
     return $avg;
   }
 
+  public static function loser ()
+  {
+    $min = 100.0;
+
+    $list = self::lstPlayers ();
+
+    if (count ($list))
+      foreach ($list as $l)
+        if ($l->average < $min)
+        {
+          $min = $l->average;
+          $loser = $l;
+        }
+
+    return $loser;
+  }
+
+  public static function winner ()
+  {
+    $max = 0;
+
+    $list = self::lstPlayers ();
+
+    if (count ($list))
+      foreach ($list as $l)
+        if ($l->average > $max)
+        {
+          $max = $l->average;
+          $winner = $l;
+        }
+
+    return $winner;
+  }
+
   public static function checkRole ($id)
   {
     $player = Player::where ('id', $id)->get ();

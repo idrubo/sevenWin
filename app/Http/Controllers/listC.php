@@ -28,7 +28,29 @@ class listC extends Controller
     return response ()->json ([
       'success' => true,
       'message' => 'Showing an all-players average.',
-      'average'    => $avg
+      'average' => $avg
+    ], 200);
+  }
+
+  public function loser ()
+  {
+    $l = ThrowDice::loser ();
+
+    return response ()->json ([
+      'success' => true,
+      'message' => 'Showing lowest average player.',
+      'average' => $l
+    ], 200);
+  }
+
+  public function winner ()
+  {
+    $w = ThrowDice::winner ();
+
+    return response ()->json ([
+      'success' => true,
+      'message' => 'Showing best average player.',
+      'average' => $w
     ], 200);
   }
 }
