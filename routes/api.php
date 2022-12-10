@@ -32,7 +32,8 @@ Route::middleware ('auth:api')->group (function ()
   Route::delete ('/players/{id}/games/', [throwC::class, 'deleteThrows']);
   Route::get    ('/players/{id}/games/', [throwC::class, 'listThrows']);
 
-  Route::get ('/players/', [listC::class, 'listPlayers']);
+  Route::get ('/players/',         [listC::class, 'listPlayers']);
+  Route::get ('/players/ranking/', [listC::class, 'getMean']);
 
 });
 

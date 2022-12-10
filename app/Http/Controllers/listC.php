@@ -20,5 +20,16 @@ class listC extends Controller
       'list'    => $list
     ], 200);
   }
+
+  public function getMean ()
+  {
+    $avg = ThrowDice::getAverage ();
+
+    return response ()->json ([
+      'success' => true,
+      'message' => 'Showing an all-players average.',
+      'average'    => $avg
+    ], 200);
+  }
 }
 

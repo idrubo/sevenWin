@@ -81,6 +81,20 @@ class ThrowDice extends Model
     return $list;
   }
 
+  public static function getAverage ()
+  {
+    $ac = 0; $i = 0;
+
+    $list = self::lstPlayers ();
+
+    if (count ($list))
+      foreach ($list as $l) { $i++; $ac += $l->average; }
+
+    $avg = $ac / $i;
+
+    return $avg;
+  }
+
   public static function checkRole ($id)
   {
     $player = Player::where ('id', $id)->get ();
