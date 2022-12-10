@@ -1,0 +1,94 @@
+sevenWin:
+----------
+
+To setup the project you must remember to run:
+php composer update
+
+Don't forguet to change your SQL database credentials at ".env".
+
+The project must be run with PHP-8.0 and laravel 9.x.
+
+Notice that passport's "app/Models/User.php" class has been renamed to
+ "app/Models/Player.php".
+
+Endpoints:
+
+- You can find all the endpoints listed on the exercise plus a "login" and
+"logout" endpoints.
+
+- All endpoints are defined on "routes/api.php", like:
+
+Non protected:
+
+POST /players/     -> To create a player.
+POST /login/       -> To login.
+
+Protected:
+
+POST /logout/      -> To logout.
+PUT  /players/{id} -> To modify a player's name.
+
+POST   /players/{id}/games/ -> A player throw dices.
+DELETE /players/{id}/games/ -> To delete a player's throws.
+GET    /players/{id}/games/ -> To list a player's throws.
+
+GET /players/               -> To list all players average.
+GET /players/ranking        -> To calculate a total average.
+GET /players/ranking/loser  -> To get the user with the lowest average.
+GET /players/ranking/winner -> To get the user with the best average.
+
+Roles:
+
+- There are two roles: "player" and "guest".
+
+- The user's role must be sent through the parameter 'role' when running a
+"POST /player" endpoint like:
+
+"curl -X POST -F 'name=name1' -F 'email=name1@s.com' -F 'password=12345678' -F 'role=player' http://localhost:8000/api/players"
+
+- As you can see there's a "role=player" parameter.
+
+- A player can run any endpoint.
+
+- A guest can register himself, login and logout with the endpoints:
+POST /players/
+POST /login/
+POST /logout/
+
+- A guest can NOT run any of the following:
+POST   /players/{id}/games/
+DELETE /players/{id}/games/
+GET    /players/{id}/games/
+
+- Finally a guest can view throw stats by running:
+GET /players/
+GET /players/ranking/
+GET /players/ranking/loser/
+GET /players/ranking/winner/
+
+Finally to run the included feature tests you must:
+
+1.- Connect to your database server and run:
+
+DROP DATABASE IF EXISTS sevenWin;
+CREATE DATABASE sevenWin CHARACTER SET utf8mb4;
+USE sevenWin;
+
+Under the "API/" directory on the project's root you will find a "sevenWin.sql"
+ script to do so.
+
+2.- Run the following artisan commands:
+
+php artisan migrate
+php artisan passport:install
+
+Under the "API/" directory on the project's root you will find a "setupSW.sh"
+ script to do so.
+
+3.- Finally you can run:
+
+php artisan test
+
+Since the test players must be created for every test, this procedure must
+ be repeated every time you run the tests.
+
