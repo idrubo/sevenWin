@@ -11,7 +11,6 @@ fi
 
 token=${1}
 
-# To logout:
 echo "To logout:"
 curl -X POST -H 'Accept: application/json' -H "Authorization: Bearer ${token}" http://localhost:8000/api/logout
 echo

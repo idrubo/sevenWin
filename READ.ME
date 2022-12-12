@@ -4,6 +4,14 @@ sevenWin:
 To setup the project you must remember to run:
 php composer update
 
+plus
+
+php artisan key:generate
+
+and
+
+php artisan key:generate
+
 Don't forguet to change your SQL database credentials at ".env".
 
 The project must be run with PHP-8.0 and laravel 9.x.
@@ -65,6 +73,11 @@ GET /players/
 GET /players/ranking/
 GET /players/ranking/loser/
 GET /players/ranking/winner/
+
+Postman collections:
+
+Postman collections are placed at "API" directory, placed at the project's root.
+As you can see, API REST calls strictly follow the ones defined above.
 
 Finally to run the included feature tests you must:
 

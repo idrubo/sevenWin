@@ -15,7 +15,6 @@ fi
 
 email=${1}
 
-# To login:
 echo "To login:"
 curl -X POST -F "email=${email}" -F 'password=12345678' http://localhost:8000/api/login
 echo

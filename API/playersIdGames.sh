@@ -11,7 +11,7 @@ fi
 
 token=${1}
 
-echo "Player throw:"
+echo "Player throw dices:"
 curl -X POST -H 'Accept: application/json' -H "Authorization: Bearer ${token}" http://localhost:8000/api/players/1/games/
 echo
 

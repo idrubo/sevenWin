@@ -11,7 +11,7 @@ fi
 
 token=${1}
 
-echo "Player throw:"
+echo "Player list all his throws:"
 curl -X GET -H 'Accept: application/json' -H "Authorization: Bearer ${token}" http://localhost:8000/api/players/1/games/
 echo
 

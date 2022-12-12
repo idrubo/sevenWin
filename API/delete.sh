@@ -11,7 +11,7 @@ fi
 
 token=${1}
 
-echo "Player throw:"
+echo "Player delete throws:"
 curl -X DELETE -H 'Accept: application/json' -H "Authorization: Bearer ${token}" http://localhost:8000/api/players/1/games/
 echo
 

@@ -1,13 +1,16 @@
 #!/bin/bash
 
 echo "Migrations:"
-php artisan migrate
+/c/xampp_2/php/php artisan migrate
 
-echo "Keys:"
-php artisan passport:install
+echo "Passport Keys:"
+/c/xampp_2/php/php artisan passport:install
+
+echo "App keys:"
+/c/xampp_2/php/php artisan key:generate
 
 # echo "Client:"
-# /c/xampp_1/php/php artisan passport:client
+# /c/xampp_2/php/php artisan passport:client
 
 exit 0
 
