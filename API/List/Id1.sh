@@ -9,11 +9,11 @@ if [ ${#} != '1' ] ; then
   exit 1
 fi
 
-token1=${1}
+token=${1}
 
 echo "Player 1 throws:"
 for i in $(seq 10); do
-  curl -X POST -H 'Accept: application/json' -H "Authorization: Bearer ${token1}" http://localhost:8000/api/players/1/games/
+  curl -X POST -H 'Accept: application/json' -H "Authorization: Bearer ${token}" http://localhost:8000/api/players/1/games/
 done
 echo
 

@@ -15,13 +15,14 @@ class throwC extends Controller
 
     if ($authPlayer->id == $id)
     {
-      if (ThrowDice::checkRole ($id))
+      if (ThrowDice::checkPlayer ($id))
       {
-        ThrowDice::create ($id);
+        $result = ThrowDice::create ($id);
 
         return response ()->json ([
           'success' => true,
-          'message' => 'Making a throw ...'
+          'message' => 'Making a throw ...',
+          'result'  => $result,
         ], 200);
       }
 
@@ -43,7 +44,7 @@ class throwC extends Controller
 
     if ($authPlayer->id == $id)
     {
-      if (ThrowDice::checkRole ($id))
+      if (ThrowDice::checkPlayer ($id))
       {
         ThrowDice::delThrow ($id);
 
@@ -71,7 +72,7 @@ class throwC extends Controller
 
     if ($authPlayer->id == $id)
     {
-      if (ThrowDice::checkRole ($id))
+      if (ThrowDice::checkPlayer ($id))
       {
         $list = ThrowDice::listThrows ($id);
 

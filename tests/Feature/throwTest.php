@@ -75,7 +75,7 @@ class throwTest extends TestCase
       'name'     => 'throw3',
       'email'    => 'throw3@s.com',
       'password' => '12345678',
-      'role'     => 'guest',
+      'role'     => 'admin',
     ];
 
     $this->json ('post', '/api/players/', $post);
@@ -169,7 +169,7 @@ class throwTest extends TestCase
       'name'     => 'delete3',
       'email'    => 'delete3@s.com',
       'password' => '12345678',
-      'role'     => 'guest',
+      'role'     => 'admin',
     ];
 
     $this->json ('post', '/api/players/', $post);
@@ -263,7 +263,7 @@ class throwTest extends TestCase
       'name'     => 'list3',
       'email'    => 'list3@s.com',
       'password' => '12345678',
-      'role'     => 'guest',
+      'role'     => 'admin',
     ];
 
     $this->json ('post', '/api/players/', $post);

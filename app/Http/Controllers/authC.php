@@ -21,7 +21,7 @@ class authC extends Controller
       'name'     => 'required|string|min:4',
       'email'    => 'required|email',
       'password' => 'required|min:8',
-      'role'     => 'in:player,guest',
+      'role'     => 'in:player,admin',
     ];
 
     $valid = Validator::make ($post, $rules);
