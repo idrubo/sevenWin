@@ -6,7 +6,7 @@ php composer update
 
 plus
 
-php artisan key:generate
+php artisan passport:install
 
 and
 
@@ -47,7 +47,7 @@ GET /players/ranking/winner -> To get the user with the best average.
 
 Roles:
 
-- There are two roles: "player" and "guest".
+- There are two roles: "player" and "admin".
 
 - The user's role must be sent through the parameter 'role' when running a
 "POST /player" endpoint like:
@@ -56,19 +56,17 @@ Roles:
 
 - As you can see there's a "role=player" parameter.
 
-- A player can run any endpoint.
-
-- A guest can register himself, login and logout with the endpoints:
+- Any user can run the following endpoints:
 POST /players/
 POST /login/
 POST /logout/
 
-- A guest can NOT run any of the following:
+- Players can run the following endpoints:
 POST   /players/{id}/games/
 DELETE /players/{id}/games/
 GET    /players/{id}/games/
 
-- Finally a guest can view throw stats by running:
+- Finally an admin can view throw stats by running:
 GET /players/
 GET /players/ranking/
 GET /players/ranking/loser/
