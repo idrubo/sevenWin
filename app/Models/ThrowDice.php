@@ -26,6 +26,8 @@ class ThrowDice extends Model
     $throw->result == 7 ? $throw->win = 'wins' : $throw->win = 'loses';
 
     $throw->save ();
+
+    return array ('result' => $throw->result, 'win' => $throw->win);
   }
 
   public static function delThrow ($id)
@@ -129,12 +131,21 @@ class ThrowDice extends Model
     return $winner;
   }
 
-  public static function checkRole ($id)
+  public static function checkPlayer ($id)
   {
     $player = Player::where ('id', $id)->get ();
 
     foreach ($player as $p)
       if ($p->roles->role == "player") return true;
+      else return false;
+  }
+
+  public static function checkAdmin ($id)
+  {
+    $player = Player::where ('id', $id)->get ();
+
+    foreach ($player as $p)
+      if ($p->roles->role == "admin") return true;
       else return false;
   }
 }

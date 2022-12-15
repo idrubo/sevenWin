@@ -12,46 +12,86 @@ class listC extends Controller
 {
   public function listPlayers ()
   {
-    $list = ThrowDice::lstPlayers ();
+    $id = auth ()->user ()->id;
+
+    if (ThrowDice::checkAdmin ($id))
+    {
+      $list = ThrowDice::lstPlayers ();
+
+      return response ()->json ([
+        'success' => true,
+        'message' => 'Listing an average for every player.',
+        'list'    => $list
+      ], 200);
+    }
 
     return response ()->json ([
-      'success' => true,
-      'message' => 'Listing an average for every player.',
-      'list'    => $list
-    ], 200);
+      'success' => false,
+      'message' => 'Unauthorized, only admins can do so.'
+    ], 403);
   }
 
   public function getMean ()
   {
-    $avg = ThrowDice::getAverage ();
+    $id = auth ()->user ()->id;
+
+    if (ThrowDice::checkAdmin ($id))
+    {
+      $avg = ThrowDice::getAverage ();
+
+      return response ()->json ([
+        'success' => true,
+        'message' => 'Showing an all-players average.',
+        'average' => $avg
+      ], 200);
+    }
 
     return response ()->json ([
-      'success' => true,
-      'message' => 'Showing an all-players average.',
-      'average' => $avg
-    ], 200);
+      'success' => false,
+      'message' => 'Unauthorized, only admins can do so.'
+    ], 403);
   }
 
   public function loser ()
   {
-    $l = ThrowDice::loser ();
+    $id = auth ()->user ()->id;
+
+    if (ThrowDice::checkAdmin ($id))
+    {
+      $l = ThrowDice::loser ();
+
+      return response ()->json ([
+        'success' => true,
+        'message' => 'Showing lowest average player.',
+        'average' => $l
+      ], 200);
+    }
 
     return response ()->json ([
-      'success' => true,
-      'message' => 'Showing lowest average player.',
-      'average' => $l
-    ], 200);
+      'success' => false,
+      'message' => 'Unauthorized, only admins can do so.'
+    ], 403);
   }
 
   public function winner ()
   {
-    $w = ThrowDice::winner ();
+    $id = auth ()->user ()->id;
+
+    if (ThrowDice::checkAdmin ($id))
+    {
+      $w = ThrowDice::winner ();
+
+      return response ()->json ([
+        'success' => true,
+        'message' => 'Showing best average player.',
+        'average' => $w
+      ], 200);
+    }
 
     return response ()->json ([
-      'success' => true,
-      'message' => 'Showing best average player.',
-      'average' => $w
-    ], 200);
+      'success' => false,
+      'message' => 'Unauthorized, only admins can do so.'
+    ], 403);
   }
 }
 

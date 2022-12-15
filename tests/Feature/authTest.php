@@ -31,7 +31,7 @@ class authTest extends TestCase
       'name'     => '',
       'email'    => 'name2@s.com',
       'password' => '12345678',
-      'role'     => 'guest',
+      'role'     => 'admin',
     ];
 
     $this->json ('post', '/api/players/', $post)
