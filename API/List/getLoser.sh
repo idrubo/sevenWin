@@ -5,10 +5,10 @@ if [ ${#} != '1' ] ; then
   exit 1
 fi
 
-token1=${1}
+token=${1}
 
 echo "Players average:"
-  curl -X GET -H 'Accept: application/json' -H "Authorization: Bearer ${token1}" http://localhost:8000/api/players/ranking/loser/
+  curl -X GET -H 'Accept: application/json' -H "Authorization: Bearer ${token}" http://localhost:8000/api/players/ranking/loser/
 echo
 
 exit 0
